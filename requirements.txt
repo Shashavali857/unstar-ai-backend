@@ -5,3 +5,4 @@ transformers
 modelscope
 accelerate
 addict
+datasets

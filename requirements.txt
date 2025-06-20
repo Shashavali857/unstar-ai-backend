@@ -1,8 +1,8 @@
-flask
-torch
-diffusers
-transformers
-modelscope
-accelerate
-addict
-datasets
+flask==2.3.3
+torch==2.1.2
+diffusers==0.25.0
+transformers==4.38.2
+modelscope==1.10.2
+accelerate==0.27.2
+addict==2.4.0
+datasets==2.14.5

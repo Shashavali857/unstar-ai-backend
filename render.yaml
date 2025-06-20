@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: unstar-ai-backend
+    name: unstar-ai-image-backend
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt

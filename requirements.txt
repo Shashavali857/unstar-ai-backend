@@ -6,3 +6,4 @@ modelscope
 accelerate
 addict
 datasets==2.17.0
+setuptools<81

@@ -5,4 +5,4 @@ transformers
 modelscope
 accelerate
 addict
-datasets==2.14.5
+datasets>=2.18.0

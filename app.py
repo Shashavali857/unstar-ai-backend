@@ -1,18 +1,20 @@
 from flask import Flask, request, send_file
+from flask_cors import CORS  # ✅ Allow frontend requests
 import torch
 from diffusers import StableDiffusionPipeline
 import uuid
 import os
 
 app = Flask(__name__)
+CORS(app)  # ✅ Enable CORS
+
 os.makedirs("outputs", exist_ok=True)
 
-# ✅ Load lightweight pipeline for CPU
+# ✅ Load Stable Diffusion model (CPU-friendly)
 image_pipe = StableDiffusionPipeline.from_pretrained(
     "runwayml/stable-diffusion-v1-5",
-    torch_dtype=torch.float32,
-    use_auth_token=True  # Optional if using private model
-).to("cpu")
+    torch_dtype=torch.float32
+).to("cpu")  # ✅ use CPU for Render Free Tier
 
 @app.route("/generate-image", methods=["POST"])
 def generate_image():
@@ -26,6 +28,7 @@ def generate_image():
 def home():
     return "✅ Unstar AI Image Generator Backend Running"
 
+# ✅ Support for Render deployment
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)

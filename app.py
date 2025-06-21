@@ -7,11 +7,12 @@ import os
 app = Flask(__name__)
 os.makedirs("outputs", exist_ok=True)
 
-# Load Stable Diffusion pipeline (CPU friendly version)
+# ✅ Load lightweight pipeline for CPU
 image_pipe = StableDiffusionPipeline.from_pretrained(
-    "CompVis/stable-diffusion-v1-4",
-    torch_dtype=torch.float32  # ✅ use float32 for CPU
-).to("cpu")  # ✅ force CPU for Render free tier
+    "runwayml/stable-diffusion-v1-5",
+    torch_dtype=torch.float32,
+    use_auth_token=True  # Optional if using private model
+).to("cpu")
 
 @app.route("/generate-image", methods=["POST"])
 def generate_image():
@@ -25,7 +26,6 @@ def generate_image():
 def home():
     return "✅ Unstar AI Image Generator Backend Running"
 
-# ✅ Dynamic port support for Render
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
